@@ -1,0 +1,37 @@
+def analyze_employees():
+    # Список із 10 співробітників: прізвище, зарплата, стать (ч/ж)
+    employees = [
+        {"surname": "Іваненко", "salary": 12000, "gender": "ч"},
+        {"surname": "Петренко", "salary": 15000, "gender": "ч"},
+        {"surname": "Сидоренко", "salary": 9800, "gender": "ч"},
+        {"surname": "Коваль", "salary": 11000, "gender": "ж"},
+        {"surname": "Мельник", "salary": 17000, "gender": "ж"},
+        {"surname": "Ткаченко", "salary": 10200, "gender": "ч"},
+        {"surname": "Шевченко", "salary": 9500, "gender": "ж"},
+        {"surname": "Бондар", "salary": 12500, "gender": "ч"},
+        {"surname": "Гнатюк", "salary": 10800, "gender": "ж"},
+        {"surname": "Романенко", "salary": 14000, "gender": "ж"}
+    ]
+
+    # а) Знаходимо співробітника з найбільшою зарплатою
+    max_salary_employee = max(employees, key=lambda x: x["salary"])
+
+    # б) Знаходимо чоловіка та жінку з найменшою зарплатою
+    men = [e for e in employees if e["gender"] == "ч"]
+    women = [e for e in employees if e["gender"] == "ж"]
+
+    min_man = min(men, key=lambda x: x["salary"])
+    min_woman = min(women, key=lambda x: x["salary"])
+
+    # Виведення результатів
+    print("Дані про співробітників:")
+    for e in employees:
+        print(f"{e['surname']:10}  Зарплата: {e['salary']:6}  Стать: {e['gender']}")
+
+    print("\nРезультати аналізу:")
+    print(f"а) Найвища зарплата у: {max_salary_employee['surname']} ({max_salary_employee['salary']})")
+    print(f"б) Чоловік з найменшою зарплатою: {min_man['surname']} ({min_man['salary']})")
+    print(f"б) Жінка з найменшою зарплатою: {min_woman['surname']} ({min_woman['salary']})")
+
+# Виклик функції
+analyze_employees()
