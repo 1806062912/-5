@@ -1,0 +1,75 @@
+# === Робота зі словником ===
+
+def print_dict(data):
+    """Виводить усі значення словника."""
+    print("\nВміст словника:")
+    for key, value in data.items():
+        print(f"{key}: {value}")
+
+def add_record(data, key, value):
+    """Додає новий запис до словника."""
+    data[key] = value
+    print(f"\nДодано запис: {key} → {value}")
+
+def delete_record(data, key):
+    """Видаляє запис із словника."""
+    if key in data:
+        del data[key]
+        print(f"\n🗑 Видалено запис: {key}")
+    else:
+        print(f"\n Ключ '{key}' не знайдено!")
+
+def print_sorted(data):
+    """Виводить словник за відсортованими ключами."""
+    print("\nСловник за відсортованими ключами:")
+    for key in sorted(data.keys()):
+        print(f"{key}: {data[key]}")
+
+# === Завдання за варіантом 18 ===
+
+def analyze_employees():
+    """Визначає найбільшу зарплату та найменші зарплати за статтю."""
+    employees = {
+        "Іваненко": {"salary": 12000, "gender": "ч"},
+        "Петренко": {"salary": 15000, "gender": "ч"},
+        "Сидоренко": {"salary": 9800, "gender": "ч"},
+        "Коваль": {"salary": 11000, "gender": "ж"},
+        "Мельник": {"salary": 17000, "gender": "ж"},
+        "Ткаченко": {"salary": 10200, "gender": "ч"},
+        "Шевченко": {"salary": 9500, "gender": "ж"},
+        "Бондар": {"salary": 12500, "gender": "ч"},
+        "Гнатюк": {"salary": 10800, "gender": "ж"},
+        "Романенко": {"salary": 14000, "gender": "ж"}
+    }
+
+    # Вивести початковий словник
+    print_dict(employees)
+
+    # а) Найбільша зарплата
+    max_emp = max(employees.items(), key=lambda x: x[1]["salary"])
+    print(f"\nа) Найвища зарплата у: {max_emp[0]} ({max_emp[1]['salary']})")
+
+    # б) Мінімальна зарплата серед чоловіків і жінок
+    men = {k: v for k, v in employees.items() if v["gender"] == "ч"}
+    women = {k: v for k, v in employees.items() if v["gender"] == "ж"}
+
+    min_man = min(men.items(), key=lambda x: x[1]["salary"])
+    min_woman = min(women.items(), key=lambda x: x[1]["salary"])
+
+    print(f"б) Чоловік з найменшою зарплатою: {min_man[0]} ({min_man[1]['salary']})")
+    print(f"б) Жінка з найменшою зарплатою: {min_woman[0]} ({min_woman[1]['salary']})")
+
+    # Показати словник у відсортованому вигляді
+    print_sorted(employees)
+
+# === Демонстрація ===
+
+if __name__ == "__main__":
+    analyze_employees()
+
+    # Приклад додавання / видалення записів:
+    employees_test = {"Андрухів": {"salary": 9000, "gender": "ч"}}
+    add_record(employees_test, "Лісова", {"salary": 13000, "gender": "ж"})
+    print_dict(employees_test)
+    delete_record(employees_test, "Андрухів")
+    print_sorted(employees_test)
